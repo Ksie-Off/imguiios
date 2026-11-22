@@ -249,7 +249,7 @@
                             ImGuiCond_FirstUseEver);
     ImGui::SetNextWindowSize(ImVec2(windowWidth, 0.0f), ImGuiCond_FirstUseEver);
 
-    ImGui::Begin("imgui ios demo", nullptr, ImGuiWindowFlags_NoCollapse);
+    ImGui::Begin("Droid Client | IOS", nullptr, ImGuiWindowFlags_NoCollapse);
 
     ImGui::Checkbox("ESP (demo)", &_espEnabled);
     ImGui::Text("display size: %.0f x %.0f", io.DisplaySize.x, io.DisplaySize.y);
@@ -295,6 +295,14 @@
     const float heightScale[3] = {1.0f, 0.78f, 0.9f};
     const float verticalOffset[3] = {0.0f, 0.06f, -0.04f};
     const float fillLevel[3] = {0.85f, 0.45f, 0.2f};
+    const char *names[3] = {"Player", "Player", "Player"};
+    const char *distances[3] = {"10m", "5m", "7m"};
+
+    ImFont *font = ImGui::GetFont();
+    const float labelSize = 15.0f;
+    const ImU32 shadowColor = IM_COL32(0, 0, 0, 200);
+    const ImU32 nameColor = IM_COL32(255, 255, 255, 240);
+    const ImU32 distanceColor = IM_COL32(220, 220, 220, 230);
 
     for (int i = 0; i < 3; i++) {
         const float centreX = (width / 4.0f) * (float)(i + 1);
@@ -328,6 +336,16 @@
         }
 
         drawList->AddRect(barMin, barMax, IM_COL32(0, 0, 0, 200), 0.0f, 0, 1.0f);
+
+        const ImVec2 nameTextSize = font->CalcTextSizeA(labelSize, 1000.0f, 0.0f, names[i]);
+        const ImVec2 namePos(centreX - nameTextSize.x * 0.5f, topLeft.y - nameTextSize.y - 6.0f);
+        drawList->AddText(font, labelSize, ImVec2(namePos.x + 1.0f, namePos.y + 1.0f), shadowColor, names[i]);
+        drawList->AddText(font, labelSize, namePos, nameColor, names[i]);
+
+        const ImVec2 distanceTextSize = font->CalcTextSizeA(labelSize, 1000.0f, 0.0f, distances[i]);
+        const ImVec2 distancePos(centreX - distanceTextSize.x * 0.5f, bottomRight.y + 6.0f);
+        drawList->AddText(font, labelSize, ImVec2(distancePos.x + 1.0f, distancePos.y + 1.0f), shadowColor, distances[i]);
+        drawList->AddText(font, labelSize, distancePos, distanceColor, distances[i]);
     }
 }
 
