@@ -1,0 +1,9 @@
+Package: imgui.test.iospmt
+Name: imgui
+Version: 1.0
+Section: Applications
+Depends: firmware (>= 14.0)
+Architecture: iphoneos-arm
+Author: imgui
+Maintainer: imgui
+Description: Standalone ImGui demo app for iOS.
