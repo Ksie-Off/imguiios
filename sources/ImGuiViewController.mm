@@ -92,7 +92,7 @@
     _mtkView.preferredFramesPerSecond = 60;
     _mtkView.multipleTouchEnabled = NO;
 
-    __weak typeof(self) weakSelf = self;
+    __weak ImGuiViewController *weakSelf = self;
     _mtkView.touchHandler = ^(NSSet<UITouch *> *touches, BOOL ended) {
         [weakSelf handleTouches:touches ended:ended];
     };
