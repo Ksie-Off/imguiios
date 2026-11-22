@@ -24,6 +24,7 @@ jobs:
         run: |
           THEOS_DIR="$RUNNER_TEMP/theos"
           git clone --recursive --depth 1 https://github.com/theos/theos.git "$THEOS_DIR"
+          rm -rf "$THEOS_DIR/sdks"
           git clone --depth 1 https://github.com/theos/sdks.git "$THEOS_DIR/sdks"
           echo "THEOS=$THEOS_DIR" >> "$GITHUB_ENV"
           echo "$THEOS_DIR/bin" >> "$GITHUB_PATH"
